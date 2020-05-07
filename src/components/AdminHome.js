@@ -2,6 +2,10 @@ import React from 'react';
 import '../css/AdminHome.css';
 import Button from '@material-ui/core/Button';
 import AddBook from './AddBook';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+import CancelIcon from '@material-ui/icons/Cancel';
 import Paper from '@material-ui/core/Paper';
 import '../css/AddBook.css';
 import DisplayData from './DisplayData';
@@ -26,9 +30,14 @@ export default class AdminHome extends React.Component{
 
         let but=[];
         if(this.state.crossbutton){
-           but=<div class="button">
-           <Button variant="contained" class="cancel_button" onClick={this.handleAddBook}>Cancel</Button>
-       </div>
+		   but=<div className="button">
+		   <Tooltip  title="cancel" aria-label="cancel">
+					<Fab style={{color:"maroon",width:"40px",height:"20px"}} >
+						<CancelIcon onClick={this.handleAddBook}/>
+					</Fab>
+				</Tooltip>
+		   </div>
+		   
         }
         else{
             but=<div></div>
@@ -38,15 +47,17 @@ export default class AdminHome extends React.Component{
             <div className="app">
                 <header className="app_header">
                 <div className="admin_header">
-                    <img src={booklogo} alt="asd" width="40px" height="40px"/><span className="admin">OnlineBookStore</span>
+                    <img src={booklogo} alt="asd" width="40px" height="40px"/><span className="admin">Online_BookStore</span>
                 </div>
                 <div className="admin_header">
                                         
                 </div>
                 <div class="admin_functions">
-                    <Button style={{background:"darkviolet",color:"white"}} variant="contained" onClick={this.handleAddBook}>
-                        Add Book
-                    </Button>
+                    <Tooltip title="Add" aria-label="add">
+						<Fab style={{backgroundColor:"white",color:"maroon",width:"40px",height:"40px"}} >
+							<AddIcon onClick={this.handleAddBook}/>
+						</Fab>
+					</Tooltip>
                 </div>
             </header>
             <div className="admin-form">

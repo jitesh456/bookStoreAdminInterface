@@ -51,11 +51,18 @@
     border:none;
     height:110px;
     padding:0px 0px;
+    
 
 }
 
+
+/* ::placeholder {
+    color: peachpuff;
+    font-size: 13px;
+  } */
 .textarea_content{
     width:500px;
+    font-size: 13px;
 }
 .button{
     display: flex;
