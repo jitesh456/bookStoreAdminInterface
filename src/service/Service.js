@@ -7,7 +7,7 @@ class Service {
 
     storeBook = (book) => {
 
-        return Axios.post('http://localhost:8090/add', { book });
+        return Axios.post('http://localhost:8090/admin/update/book',  book );
     }
 
     deleteData = (dataID) => {
@@ -15,7 +15,7 @@ class Service {
     }
 
     getAllDetails = () => {
-        return Axios.get('http://localhost:8090/all');
+        return Axios.get('http://localhost:8090/admin/books');
     }
 }
 export default new Service()

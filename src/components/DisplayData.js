@@ -11,14 +11,7 @@ export default class DisplayData extends React.Component{
           editFlag:true
         }*/
         this.state={
-          data:[
-            {bookname:"asd",isbn:123467890,price:899,quantity:20,description:"Horror books"},
-            {bookname:"asd",isbn:123456789,price:899,quantity:20,description:"Horror books"},
-            {bookname:"asd",isbn:123456790,price:899,quantity:20,description:"Horror books"},
-            {bookname:"asd",isbn:1234567890,price:899,quantity:20,description:"Horror books"},
-            {bookname:"asd",isbn:123456890,price:899,quantity:20,description:"Horror books"},
-            {bookname:"asd",isbn:1234567890,price:899,quantity:20,description:"Horror books"},
-          ],
+          bookRecord:[ ],
         };
         console.log(this.state)
       }
@@ -65,9 +58,11 @@ export default class DisplayData extends React.Component{
 
     getAllDetails=()=>{
       Service.getAllDetails().then(response=>{
-              console.log(response);
-              this.setState({date:response.data})
-              console.log(this.state.data);
+              console.log(response.data.body);
+              this.setState({
+                bookRecord:response.data.body
+              })
+              console.log(this.state.bookRecord);
           }).catch(error=>{
               console.log(error);
           })
@@ -110,7 +105,7 @@ export default class DisplayData extends React.Component{
 				<div style={{overflow:"scroll",height:"400px"}}>
 				<table>
 				{
-					this.state.data.map((data =>{
+					this.state.bookRecord.map((data =>{
 					return <tr >
 						<div id="editbox" class="modal">
 							<form class="modal-content animate">
@@ -120,7 +115,7 @@ export default class DisplayData extends React.Component{
 								</div>
 							</form>
 							</div>
-								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.bookname}</td>
+								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.name}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.isbn}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}>{data.price}</td>
 								<td style={{textAlign:"center",width:"66px",fontSize:"medium"}}>{data.quantity}</td>

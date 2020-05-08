@@ -34,20 +34,26 @@ export default class AddBook extends React.Component {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      const book = {
-        bookname: this.state.bookName,
-        isbn: this.state.isbn,
-        authername: this.state.authorName
+      const book={
+        name :this.state.bookName,
+        price :this.state.price,
+        quantity :this.state.quantity,
+        authorName :this.state.authorName,
+        bookCover :this.state.file,
+        isbn :this.state.isbn,
+        category :this.state.category,
+        bookDetails :this.state.bookDescrption,
       }
       document.getElementById("baseForm").reset();
       Service.storeBook(book).then(response => {
-        console.log(response);
-        this.setState({ convert: response.data })
-        console.log(this.state.convert);
+        console.log(response.data);
+        console.log(this.state);
       }).catch(error => {
         console.log(error);
       })
+      
     }
+    
   }
 
 
@@ -208,9 +214,9 @@ export default class AddBook extends React.Component {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={1}>Adventure</MenuItem>
-                  <MenuItem value={2}>Horror</MenuItem>
-                  <MenuItem value={3}>Sci-Fiction</MenuItem>
+                  <MenuItem value="Adventure">Adventure</MenuItem>
+                  <MenuItem value="Horror">Horror</MenuItem>
+                  <MenuItem value="Sci-Fiction">Sci-Fiction</MenuItem>
                 </Select>
               </FormControl>
             </CardContent>
