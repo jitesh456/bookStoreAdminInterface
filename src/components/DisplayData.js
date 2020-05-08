@@ -64,6 +64,7 @@ export default class DisplayData extends React.Component{
               })
               console.log(this.state.bookRecord);
           }).catch(error=>{
+
               console.log(error);
           })
     }
@@ -91,7 +92,7 @@ export default class DisplayData extends React.Component{
         let im=[]
         if(this.props.show)
         {
-            im=<div id="container">
+            im=<div className="container">
            		<table >
 				<tr>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Book Name</th>
@@ -102,8 +103,8 @@ export default class DisplayData extends React.Component{
 					<th style={{border:"1px solid black",width:"80px",textAlign:"center",color:"green",fontSize:"medium"}}>Delete</th>
 					</tr>
 				</table>
-				<div style={{overflow:"scroll",height:"400px"}}>
-				<table>
+				<div className="table-containt">
+				<table style={{ width:"800px"}}>
 				{
 					this.state.bookRecord.map((data =>{
 					return <tr >
