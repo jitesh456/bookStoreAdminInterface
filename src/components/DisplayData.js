@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/DisplayData.css';
-import Axios from 'axios';
-import Button from '@material-ui/core/Button';
 
+import Button from '@material-ui/core/Button';
+import Service from '../service/Service.js';
 
 export default class DisplayData extends React.Component{
     constructor(props){
@@ -36,7 +36,7 @@ export default class DisplayData extends React.Component{
       this.setState({
         data:data.filter(data=>data.id!==dataID)
       })
-      Axios.delete('http://localhost:8090/${dataID}').then(response=>{
+      Service.deleteData(dataID).then(response=>{
               console.log(response);
               this.setState({date:response.data})
               console.log(this.state.data);
@@ -64,7 +64,7 @@ export default class DisplayData extends React.Component{
     }*/
 
     getAllDetails=()=>{
-        Axios.get('http://localhost:8090/all').then(response=>{
+      Service.getAllDetails().then(response=>{
               console.log(response);
               this.setState({date:response.data})
               console.log(this.state.data);
