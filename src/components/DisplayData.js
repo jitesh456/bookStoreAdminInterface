@@ -11,6 +11,7 @@ export default class DisplayData extends React.Component{
         this.state={
           bookRecord:[ ]
           ,editFlag:false,
+          cancelFlag:false,
           quantityTemp:'',
           priceTemp:'',
           isbnTemp:''
@@ -25,6 +26,12 @@ export default class DisplayData extends React.Component{
           quantityTemp:quantity,
           priceTemp:price,
           isbnTemp:isbn
+        })
+      }
+
+      cancelButton=e=>{
+        this.setState({
+          cancelFlag:true
         })
       }
 
@@ -44,7 +51,7 @@ export default class DisplayData extends React.Component{
               console.log(this.state.data);
           }).catch(error=>{
               console.log(error);
-          })    
+          })  
           this.getAllDetails();
         }
 
@@ -81,6 +88,14 @@ export default class DisplayData extends React.Component{
             editFlag:false
           })
         }
+
+        const cancelButtonFlag=this.state.cancelFlag
+        if(cancelButtonFlag){
+          document.getElementById('editbox').style.display='none';
+          this.setState({
+            cancelFlag:false
+          })
+        }
         let im=[]
         if(this.props.show)
         {
@@ -90,7 +105,8 @@ export default class DisplayData extends React.Component{
                 <div class="container2">
                   <input type="text" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} placeholder={this.state.quantityTemp} name="updateQuantity" onChange={this.handleChange} required></input>&nbsp;&nbsp;
                   <input type="text" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} placeholder={this.state.priceTemp} name="updateprice" onChange={this.handleChange} required></input>&nbsp;&nbsp;
-                  <Button variant="contained" style={{background:"blue",color:"white"}}>Update</Button>         
+                  <Button variant="contained" style={{background:"blue",color:"white"}}>Update</Button>&nbsp;
+                  <Button variant="contained" style={{background:"red",color:"white"}} onClick={this.cancelButton}>Cancel</Button>        
                 </div>
               </form>
             </div>
