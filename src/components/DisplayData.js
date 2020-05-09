@@ -7,22 +7,31 @@ import Service from '../service/Service.js';
 export default class DisplayData extends React.Component{
     constructor(props){
         super(props)
-        /*this.state={
-          editFlag:true
-        }*/
+        
         this.state={
-          bookRecord:[ ],
+          bookRecord:[ ]
+          ,editFlag:false,
+          quantityTemp:'',
+          priceTemp:'',
+          isbnTemp:''
         };
         console.log(this.state)
+        this.handleChange=this.handleChange.bind(this);
       }
         
-      /*editButton=e=>{
+      editButton=(quantity,price,isbn)=>{
         this.setState({
-          editFlag:true
+          editFlag:true,
+          quantityTemp:quantity,
+          priceTemp:price,
+          isbnTemp:isbn
         })
-      }*/
-    
-    
+      }
+
+      handleChange(field,event){
+        this.setState({[event.target.name]:event.target.value}
+          , ()=> this.validate(field) );
+      }
         
     deleteData(dataID){
       const {data}=this.state;
@@ -37,24 +46,7 @@ export default class DisplayData extends React.Component{
               console.log(error);
           })    
           this.getAllDetails();
-    }
-    
-    /*changeContent= (id,event) => {
-      if (this.state.firstname.length === 0) {
-        return;
-      }
-      const index = this.state.data.findIndex((data)=> {
-          return (data.id === id);
-      })
-    
-      const user = Object.assign({}, this.state.data[index]);
-      user.firstname = event.target.value;
-    
-      const data = Object.assign([], this.state.data);
-      data[index] = user;
-    
-      this.setState({data:data});
-    }*/
+        }
 
     getAllDetails=()=>{
       Service.getAllDetails().then(response=>{
@@ -93,7 +85,16 @@ export default class DisplayData extends React.Component{
         if(this.props.show)
         {
             im=<div className="container">
-           		<table >
+              <div id="editbox" class="modal">
+              <form class="modal-content animate">
+                <div class="container2">
+                  <input type="text" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} placeholder={this.state.quantityTemp} name="updateQuantity" onChange={this.handleChange} required></input>&nbsp;&nbsp;
+                  <input type="text" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} placeholder={this.state.priceTemp} name="updateprice" onChange={this.handleChange} required></input>&nbsp;&nbsp;
+                  <Button variant="contained" style={{background:"blue",color:"white"}}>Update</Button>         
+                </div>
+              </form>
+            </div>
+        <table >
 				<tr>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Book Name</th>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>ISBN Number</th>
@@ -108,20 +109,12 @@ export default class DisplayData extends React.Component{
 				{
 					this.state.bookRecord.map((data =>{
 					return <tr >
-						<div id="editbox" class="modal">
-							<form class="modal-content animate">
-								<div class="container2">
-									<input type="text" placeholder="Edit Content" name="updateContent" onChange={this.handleChange} required></input>
-									<button type="submit" >UPDATE</button>
-								</div>
-							</form>
-							</div>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.name}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.isbn}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}>{data.price}</td>
 								<td style={{textAlign:"center",width:"66px",fontSize:"medium"}}>{data.quantity}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}><Button variant="contained" style={{background:"blue",color:"white"}}
-									onClick={()=>this.deleteDataValue(data.isbn)}>Edit</Button>
+									onClick={()=>this.editButton(data.quantity,data.price,data.isbn)}>Edit</Button>
 								</td>
 								<td style={{width:"40px",fontSize:"medium"}}><Button variant="contained" style={{background:"red",color:"white"}}
 									onClick={()=>this.deleteDataValue(data.isbn)}>Delete</Button>

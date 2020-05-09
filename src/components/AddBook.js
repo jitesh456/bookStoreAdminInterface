@@ -10,6 +10,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import '../css/AddBook.css';
 import Service from '../service/Service.js';
+import SnackBar from '@material-ui/core/SnackBar';
+import IconButton from '@material-ui/core/IconButton';
 
 export default class AddBook extends React.Component {
   constructor(props) {
@@ -17,7 +19,7 @@ export default class AddBook extends React.Component {
     this.state = {
       msg: '', bookName: '', isbn: '', authorName: '', quantity: '', price: '', bookDescrption: '',
       category: '', file: '', isbnError: '', authorNameError: '', quantityError: '', fileError: '',
-      priceError: '', bookDescrptionError: ''
+      priceError: '', bookDescrptionError: '',editFlag:false,snackbaropen:false,snackbarmsg:''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +31,10 @@ export default class AddBook extends React.Component {
     var value = event.target.value;
     var name = event.target.name;
   }
+
+  snackbarClose=(event)=>{
+    this.setState({snackbaropen:false});
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -44,16 +50,15 @@ export default class AddBook extends React.Component {
         category :this.state.category,
         bookDetails :this.state.bookDescrption,
       }
-      document.getElementById("baseForm").reset();
       Service.storeBook(book).then(response => {
         console.log(response.data);
+        this.setState({snackbaropen:true,snackbarmsg:response.data.body})
         console.log(this.state);
       }).catch(error => {
         console.log(error);
       })
-      
+      document.getElementById("baseForm").reset();
     }
-    
   }
 
 
@@ -153,6 +158,23 @@ export default class AddBook extends React.Component {
     let im = [];
     if (this.props.show) {
       im =
+      <div id='container'>
+          <SnackBar
+          anchorOrigin={{vertical:'top',horizontal:'center'}}
+          open={this.state.snackbaropen}
+          autoHideDuration={3000}
+          onClose={this.snackbarClose}
+          message={<span id="mesage-id">{this.state.snackbarmsg}</span>}
+          action={[
+            <IconButton key="close"
+              arial-label="Close"
+              color="inherit"
+              onClick={this.snackbarClose}
+            >
+                x
+            </IconButton>
+          ]}
+          />
         <form id="baseForm" onSubmit={this.handleSubmit} onReset={this.reset}>
           <Card class="card">
             <CardContent className="content">
@@ -241,15 +263,11 @@ export default class AddBook extends React.Component {
             </CardContent>
           </Card>
         </form>
-
+        </div>
     }
     else {
       im = <div></div>
     }
     return (im);
   }
-
 }
-
-
-
