@@ -47,7 +47,9 @@ export default class AdminHome extends React.Component {
             <div className="app">
                 <header className="app_header">
                     <div className="admin_header">
-                        <img src={booklogo} alt="asd" width="40px" height="40px" /><span className="admin">Online_BookStore</span>
+                        <img src={booklogo} alt="asd" width="40px" height="40px" /><span className="admin">Online</span>
+                        <span className="admin">Book</span>
+                        <span className="admin">Store</span>
                     </div>
                     <div className="admin_header">
 

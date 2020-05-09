@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import '../css/AddBook.css';
 import Service from '../service/Service.js';
-import SnackBar from '@material-ui/core/SnackBar';
+import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 
 export default class AddBook extends React.Component {
@@ -159,7 +159,7 @@ export default class AddBook extends React.Component {
     if (this.props.show) {
       im =
       <div id='container'>
-          <SnackBar
+          <Snackbar
           anchorOrigin={{vertical:'top',horizontal:'center'}}
           open={this.state.snackbaropen}
           autoHideDuration={3000}
@@ -171,7 +171,6 @@ export default class AddBook extends React.Component {
               color="inherit"
               onClick={this.snackbarClose}
             >
-                x
             </IconButton>
           ]}
           />
