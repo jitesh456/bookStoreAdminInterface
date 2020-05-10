@@ -82,6 +82,7 @@ export default class AddBook extends React.Component {
     var namePAttern = /^([A-Za-z.]+[ ]{1}[A-Za-z.]*[ ]*[A-Za-z.]*)$/;
     var numberPattern = /^([1-9]{1}([0-9]*))$/;
     let isbnError = '';
+    var validExtension= ['png','jpg','jpeg','bmp'];
     let authorNameError = '';
     let quantityError = '';
     let priceError = '';
@@ -116,8 +117,9 @@ export default class AddBook extends React.Component {
         }
         break;
       case 'file':
-        if (this.state.file === '') {
-          fileError = "Please Select file";
+        var fileNameExtension=this.state.file.substr(this.state.file.lastIndexOf('.')+1);
+        if ( !validExtension.includes(fileNameExtension)) {
+          fileError = "Only these image type accepted:  jpg,png,jpeg,bmp";
         }
         break;
       case 'bookDescrption':
@@ -216,11 +218,15 @@ export default class AddBook extends React.Component {
               </div>
             </CardContent>
             <CardContent className="content">
-              <div>
-                <input type="file" name="file" onChange={this.handleChange.bind(this, 'file')} className="card_content" />
+              <div className="div_content" style={{ marginTop:"30px"}}>
+                <TextField name="file" label="File Url" variant="outlined" onChange={this.handleChange.bind(this, 'file')}
+                  className="card_content" onKeyUp={this.handleError} required />
                 <div className="error_message">{this.state.fileError}</div>
               </div>
+
               <div style={{ width: "20px" }}></div>
+
+              <div className="div_content">
               <FormControl variant="outlined"  >
                 <InputLabel id="demo-simple-select-outlined-label" >Category</InputLabel>
                 <Select
@@ -231,7 +237,6 @@ export default class AddBook extends React.Component {
                   label="Category"
                   className="card_content category"
                 >
-
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
@@ -240,7 +245,8 @@ export default class AddBook extends React.Component {
                   <MenuItem value="Sci-Fiction">Sci-Fiction</MenuItem>
                 </Select>
               </FormControl>
-            </CardContent>
+              </div>
+              </CardContent>
             <CardContent>
               <div>
                 <TextareaAutosize
