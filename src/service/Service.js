@@ -7,11 +7,11 @@ class Service {
 
     storeBook = (book) => {
 
-        return Axios.post('http://localhost:8090/admin/update/book',  book );
+        return Axios.post('http://localhost:8090/admin/book',  book );
     }
 
-    deleteData = (dataID) => {
-        return Axios.delete('http://localhost:8090/${dataID}');
+    updateBook = (book) => {
+        return Axios.put('http://localhost:8090/admin/update/price',book);
     }
 
     getAllDetails = () => {

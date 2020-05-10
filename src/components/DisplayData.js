@@ -1,8 +1,9 @@
 import React from 'react';
 import '../css/DisplayData.css';
-
 import Button from '@material-ui/core/Button';
 import Service from '../service/Service.js';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
 
 export default class DisplayData extends React.Component{
     constructor(props){
@@ -14,10 +15,15 @@ export default class DisplayData extends React.Component{
           cancelFlag:false,
           quantityTemp:'',
           priceTemp:'',
-          isbnTemp:''
+          isbnTemp:'',
+          updatedPrice:'',
+          updatedQuantity:'',
+          snackbaropen:false,
+          snackbarmsg:''
         };
         console.log(this.state)
         this.handleChange=this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
       }
         
       editButton=(quantity,price,isbn)=>{
@@ -29,6 +35,10 @@ export default class DisplayData extends React.Component{
         })
       }
 
+      snackbarClose=(event)=>{
+        this.setState({snackbaropen:false});
+      };
+
       cancelButton=e=>{
         this.setState({
           cancelFlag:true
@@ -37,7 +47,7 @@ export default class DisplayData extends React.Component{
 
       handleChange(field,event){
         this.setState({[event.target.name]:event.target.value}
-          , ()=> this.validate(field) );
+           );
       }
 
     getAllDetails=()=>{
@@ -51,6 +61,23 @@ export default class DisplayData extends React.Component{
 
               console.log(error);
           })
+    }
+
+    handleSubmit(event) {
+      event.preventDefault();
+        const book={
+          price:this.state.updatedPrice,
+          isbn:this.state.isbnTemp,
+          quantity:this.state.updatedQuantity
+        }
+        Service.updateBook(book).then(response => {
+          console.log(response.data)
+          this.setState({snackbaropen:true,snackbarmsg:response.data.body})
+          console.log(this.state);
+        }).catch(error => {
+          console.log(error);
+        })
+        document.getElementById("updatedform").reset();
     }
 
     componentDidMount(){
@@ -85,12 +112,27 @@ export default class DisplayData extends React.Component{
         if(this.props.show)
         {
             im=<div className="container">
+              <Snackbar
+              anchorOrigin={{vertical:'top',horizontal:'center'}}
+              open={this.state.snackbaropen}
+              autoHideDuration={3000}
+              onClose={this.snackbarClose}
+              message={<span id="mesage-id">{this.state.snackbarmsg}</span>}
+              action={[
+              <IconButton key="close"
+              arial-label="Close"
+              color="inherit"
+              onClick={this.snackbarClose}
+            >
+              </IconButton>
+          ]}
+          />
               <div id="editbox" class="modal">
-              <form class="modal-content animate">
+              <form class="modal-content animate" id="updatedform" onSubmit={this.handleSubmit} onReset={this.reset}>
                 <div class="container2">
-                  <input type="text" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} placeholder={this.state.quantityTemp} name="updateQuantity" onChange={this.handleChange} required></input>&nbsp;&nbsp;
-                  <input type="text" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} placeholder={this.state.priceTemp} name="updateprice" onChange={this.handleChange} required></input>&nbsp;&nbsp;
-                  <Button variant="contained" style={{background:"blue",color:"white"}}>Update</Button>&nbsp;
+                  <input type="text" name="updatedQuantity" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} onChange={this.handleChange.bind(this, 'updatedQuantity')} placeholder={this.state.quantityTemp}  required></input>&nbsp;&nbsp;
+                  <input type="text" name="updatedPrice" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} onChange={this.handleChange.bind(this, 'updatedPrice')} placeholder={this.state.priceTemp} required></input>&nbsp;&nbsp;
+                  <Button type="submit" variant="contained" style={{background:"blue",color:"white"}} onClick={()=>window.setTimeout(function(){window.location.reload(false)},2000)}>Update</Button>&nbsp;
                   <Button variant="contained" style={{background:"red",color:"white"}} onClick={this.cancelButton}>Cancel</Button>        
                 </div>
               </form>
