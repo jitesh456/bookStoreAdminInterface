@@ -17,12 +17,31 @@
     color: white;
 }
 
+.app_footer{
+    border:1px solid greenyellow;
+    border:none;
+    background-color: #9b2020;
+    display: flex;
+    height: 50px;
+    margin-top: 113px;
+    justify-content: space-evenly;
+    color: white;
+}
+
 .admin_header{
     border:1px solid green;
     border:none;
     display:flex;
     justify-content: flex-start;
     margin-left: 20px;
+}
+
+.admin_footer{
+    border:1px solid green;
+    border:none;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .admin_functions{

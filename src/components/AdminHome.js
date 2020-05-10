@@ -69,6 +69,11 @@ export default class AdminHome extends React.Component {
                         <AddBook show={this.state.addbook} />
                     </Paper>
                 </div>
+                <footer className='app_footer'>
+                    <div className='admin_footer'>
+                        <p> Online Book Store.All Rights Reserved.</p>
+                    </div>
+                </footer>
             </div>
         );
     }

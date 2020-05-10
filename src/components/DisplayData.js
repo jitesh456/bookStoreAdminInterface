@@ -39,21 +39,6 @@ export default class DisplayData extends React.Component{
         this.setState({[event.target.name]:event.target.value}
           , ()=> this.validate(field) );
       }
-        
-    deleteData(dataID){
-      const {data}=this.state;
-      this.setState({
-        data:data.filter(data=>data.id!==dataID)
-      })
-      Service.deleteData(dataID).then(response=>{
-              console.log(response);
-              this.setState({date:response.data})
-              console.log(this.state.data);
-          }).catch(error=>{
-              console.log(error);
-          })  
-          this.getAllDetails();
-        }
 
     getAllDetails=()=>{
       Service.getAllDetails().then(response=>{
@@ -117,7 +102,6 @@ export default class DisplayData extends React.Component{
 					<th style={{border:"1px solid black",width:"40px",textAlign:"center",color:"green",fontSize:"medium"}}>Price</th>
 					<th style={{border:"1px solid black",width:"50px",textAlign:"center",color:"green",fontSize:"medium"}}>Quantity</th>
 					<th style={{border:"1px solid black",width:"66px",textAlign:"center",color:"green",fontSize:"medium"}}>Edit</th>
-					<th style={{border:"1px solid black",width:"80px",textAlign:"center",color:"green",fontSize:"medium"}}>Delete</th>
 					</tr>
 				</table>
 				<div className="table-containt">
@@ -131,9 +115,6 @@ export default class DisplayData extends React.Component{
 								<td style={{textAlign:"center",width:"66px",fontSize:"medium"}}>{data.quantity}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}><Button variant="contained" style={{background:"blue",color:"white"}}
 									onClick={()=>this.editButton(data.quantity,data.price,data.isbn)}>Edit</Button>
-								</td>
-								<td style={{width:"40px",fontSize:"medium"}}><Button variant="contained" style={{background:"red",color:"white"}}
-									onClick={()=>this.deleteDataValue(data.isbn)}>Delete</Button>
 								</td>
 							</tr>
 				  }))
