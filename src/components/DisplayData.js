@@ -132,13 +132,14 @@ export default class DisplayData extends React.Component{
                 <div class="container2">
                   <input type="text" name="updatedQuantity" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} onChange={this.handleChange.bind(this, 'updatedQuantity')} placeholder={this.state.quantityTemp}  required></input>&nbsp;&nbsp;
                   <input type="text" name="updatedPrice" style={{width:'30%',padding:'12px 20px',border:'1px solid #ccc'}} onChange={this.handleChange.bind(this, 'updatedPrice')} placeholder={this.state.priceTemp} required></input>&nbsp;&nbsp;
-                  <Button type="submit" variant="contained" style={{background:"blue",color:"white"}} onClick={()=>window.setTimeout(function(){window.location.reload(false)},2000)}>Update</Button>&nbsp;
+                  <Button type="submit" variant="contained" style={{background:"blue",color:"white"}} onClick={()=>window.setTimeout(function(){window.location.reload(false)},2000)}>Edit</Button>&nbsp;
                   <Button variant="contained" style={{background:"red",color:"white"}} onClick={this.cancelButton}>Cancel</Button>        
                 </div>
               </form>
             </div>
         <table >
 				<tr>
+          <th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Book Cover</th>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Book Name</th>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>ISBN Number</th>
 					<th style={{border:"1px solid black",width:"40px",textAlign:"center",color:"green",fontSize:"medium"}}>Price</th>
@@ -151,6 +152,7 @@ export default class DisplayData extends React.Component{
 				{
 					this.state.bookRecord.map((data =>{
 					return <tr >
+            		<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{<img  src={data.bookcover} className="image" />}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.name}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.isbn}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}>{data.price}</td>

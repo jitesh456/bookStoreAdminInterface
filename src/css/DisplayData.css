@@ -18,6 +18,13 @@ button{
 width: 100%; 
 }
 
+.image{
+  width:100px;
+  height:130px;
+  margin-left: 25px;
+  margin-top: -4px;
+}
+
 .container{
   width:800px;
 }
