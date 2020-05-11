@@ -249,14 +249,17 @@ export default class AddBook extends React.Component {
               </CardContent>
             <CardContent>
               <div>
-                <TextareaAutosize
-                  name="bookDescrption"
-                  rowsMax={0}
-                  aria-label="maximum height"
-                  placeholder="Book Discription"
-                  onChange={this.handleChange.bind(this, 'bookDescrption')}
-                  style={{ height: "60px" }} className="textarea_content"
-                  required />
+                  <TextField
+                    id="outlined-multiline-static"
+                    name="bookDescrption"
+                    label="Book Description"
+                    multiline
+                    rows={2}
+                    variant="outlined"
+                    onChange={this.handleChange.bind(this, 'bookDescrption')}
+                    style={{ height: "60px" }} className="textarea_content"
+                    required
+                  />
 
               </div>
             </CardContent>
