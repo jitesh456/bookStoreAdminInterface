@@ -141,6 +141,7 @@ export default class DisplayData extends React.Component{
 				<tr>
           <th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Book Cover</th>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Book Name</th>
+          <th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>Author Name</th>
 					<th style={{border:"1px solid black",width:"120px",textAlign:"center",color:"green",fontSize:"medium"}}>ISBN Number</th>
 					<th style={{border:"1px solid black",width:"40px",textAlign:"center",color:"green",fontSize:"medium"}}>Price</th>
 					<th style={{border:"1px solid black",width:"50px",textAlign:"center",color:"green",fontSize:"medium"}}>Quantity</th>
@@ -148,12 +149,13 @@ export default class DisplayData extends React.Component{
 					</tr>
 				</table>
 				<div className="table-containt">
-				<table style={{ width:"800px"}}>
+				<table style={{ width:"1000px"}}>
 				{
 					this.state.bookRecord.map((data =>{
 					return <tr >
             		<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{<img  src={data.bookcover} className="image" />}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.name}</td>
+                <td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.authorname}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.isbn}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}>{data.price}</td>
 								<td style={{textAlign:"center",width:"66px",fontSize:"medium"}}>{data.quantity}</td>
