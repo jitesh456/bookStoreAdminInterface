@@ -153,7 +153,7 @@ export default class DisplayData extends React.Component{
 				{
 					this.state.bookRecord.map((data =>{
 					return <tr >
-            		<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{<img  src={data.bookcover} className="image" />}</td>
+            		<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{<img src={`http://localhost:8090/admin/downloadFile/${data.bookcover}`} className="image" />}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.name}</td>
                 <td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.authorname}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.isbn}</td>

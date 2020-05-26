@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -24,6 +23,7 @@ export default class AddBook extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFileChange=this.handleFileChange.bind(this);
     this.handleError = this.handleError.bind(this);
   }
 
@@ -59,6 +59,21 @@ export default class AddBook extends React.Component {
       })
       document.getElementById("baseForm").reset();
     }
+  }
+
+  handleFileChange(event){
+    const selectedImage=new FormData();
+    selectedImage.append('file',event.target.files[0]);
+    console.log(selectedImage)
+    Service.uploadImage(selectedImage).then((response)=>{
+      console.log(response.data)
+      this.setState({
+        file:response.data.fileName
+      })
+      console.log(this.state.bookCover)
+    }).catch((error)=>{
+      console.log(error)
+    })
   }
 
 
@@ -219,7 +234,7 @@ export default class AddBook extends React.Component {
             </CardContent>
             <CardContent className="content">
               <div className="div_content" style={{ marginTop:"30px"}}>
-                <TextField name="file" label="File Url" variant="outlined" onChange={this.handleChange.bind(this, 'file')}
+                  <input type="file" name="file" label="File Url" variant="outlined" onChange={this.handleFileChange.bind('file')}
                   className="card_content" onKeyUp={this.handleError} required />
                 <div className="error_message">{this.state.fileError}</div>
               </div>
@@ -243,6 +258,7 @@ export default class AddBook extends React.Component {
                   <MenuItem value="Adventure">Adventure</MenuItem>
                   <MenuItem value="Horror">Horror</MenuItem>
                   <MenuItem value="Sci-Fiction">Sci-Fiction</MenuItem>
+                  <MenuItem value="Romantic">Romantic</MenuItem>
                 </Select>
               </FormControl>
               </div>
