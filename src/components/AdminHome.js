@@ -47,8 +47,7 @@ export default class AdminHome extends React.Component {
             <div className="app">
                 <header className="app_header">
                     <div className="admin_header">
-                        <img src={booklogo} alt="asd" width="40px" height="40px" /><span className="admin">Online</span>
-                        <span className="admin">Book</span>
+                        <img src={booklogo} alt="asd" width="40px" height="40px" /><span className="admin">BB</span>
                         <span className="admin">Store</span>
                     </div>
                     <div className="admin_header">
@@ -71,7 +70,7 @@ export default class AdminHome extends React.Component {
                 </div>
                 <footer className='app_footer'>
                     <div className='admin_footer'>
-                        <p> © Online Book Store.All Rights Reserved.</p>
+                        <p> © Bug Busters Store.All Rights Reserved.</p>
                     </div>
                 </footer>
             </div>

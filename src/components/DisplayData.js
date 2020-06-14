@@ -84,14 +84,6 @@ export default class DisplayData extends React.Component{
       this.getAllDetails();
     }
 
-    deleteDataValue(e){
-      const {data}=this.state;
-      this.setState({
-        data:data.filter(data=>data.isbn!==e)
-      })
-      alert(e);
-    }
-
     render(){    
         const editButtonFlags=this.state.editFlag
         if(editButtonFlags){
@@ -153,9 +145,9 @@ export default class DisplayData extends React.Component{
 				{
 					this.state.bookRecord.map((data =>{
 					return <tr >
-            		<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{<img src={`http://localhost:8090/admin/downloadFile/${data.bookcover}`} className="image" />}</td>
+            		<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{<img src={`http://localhost:8090/admin/downloadFile/${data.bookCover}`} className="image" />}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.name}</td>
-                <td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.authorname}</td>
+                <td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.authorName}</td>
 								<td style={{textAlign:"center",width:"120px",fontSize:"medium"}}>{data.isbn}</td>
 								<td style={{textAlign:"center",width:"40px",fontSize:"medium"}}>{data.price}</td>
 								<td style={{textAlign:"center",width:"66px",fontSize:"medium"}}>{data.quantity}</td>

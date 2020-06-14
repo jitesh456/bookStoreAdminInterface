@@ -52,12 +52,15 @@ export default class AddBook extends React.Component {
       }
       Service.storeBook(book).then(response => {
         console.log(response.data);
-        this.setState({snackbaropen:true,snackbarmsg:response.data.body})
+        this.setState({snackbaropen:true,snackbarmsg:response.data.message})
+        if(response.status===200){
+          document.getElementById("baseForm").reset();
+        }
         console.log(this.state);
       }).catch(error => {
         console.log(error);
       })
-      document.getElementById("baseForm").reset();
+     
     }
   }
 
