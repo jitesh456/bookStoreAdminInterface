@@ -1,0 +1,130 @@
+.app {
+    border:1px solid black;
+    border:none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+}
+
+.app_header {
+    border:1px solid greenyellow;
+    border:none;
+    background-color: #9b2020;
+    display: flex;
+    height: 50px;
+    justify-content: flex-start;
+    color: white;
+}
+
+.app_footer{
+    border:1px solid greenyellow;
+    border:none;
+    background-color: #9b2020;
+    display: flex;
+    height: 50px;
+    margin-top: 111px;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.admin_header{
+    border:1px solid green;
+    border:none;
+    display:flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
+.admin_footer{
+    border:1px solid green;
+    border:none;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.admin_functions{
+    border:1px solid black;
+    border:none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.admin-form{
+    position: relative;
+    border:1px solid blue;
+    border:none;
+    height:540px;
+    margin-top: 0px;
+}
+
+.admin{
+    font-size: larger;
+    font-weight: bold;
+    align-self: center;
+    margin-left: 5px;
+}
+
+@media only screen and (min-device-width:330px) and (max-device-width:765px){
+    .admin{
+        font-size: medium;
+        font-weight: bold;
+    }
+}
+.app {
+    border:1px solid black;
+    border:none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+}
+
+.app_header {
+    border:1px solid greenyellow;
+    border:none;
+    background-color: #9b2020;
+    display: flex;
+    height: 50px;
+    justify-content: flex-start;
+    padding-right: 450px;
+    color: white;
+}
+
+.admin_header{
+    border:1px solid green;
+    border:none;
+    display:flex;
+    align-items: center;
+    padding-right: 500px;
+}
+
+.admin_functions{
+    border:1px solid black;
+    border:none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.admin-form{
+    position: relative;
+    border:1px solid blue;
+    border:none;
+    height:540px;
+    margin-top: 0px;
+}
+
+.admin{
+    font-size: larger;
+    font-weight: bold;
+}
+
+@media only screen and (min-device-width:330px) and (max-device-width:765px){
+    .admin{
+        font-size: medium;
+        font-weight: bold;
+    }
+}

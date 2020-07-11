@@ -1,19 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import AddBook from './component/AddBook';
+import {BrowserRouter} from 'react-router-dom';
+import Routers from './components/Routers'
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <h3>Book Store Admin Interface </h3>
-      </header>
-      <div className="admin-form">
-        <AddBook/>
-      </div>
-    </div>
+    <BrowserRouter>
+        <Routers/>
+    </BrowserRouter>
+
   );
 }
 
